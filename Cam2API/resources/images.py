@@ -5,7 +5,6 @@ from modules.camera import CameraModel
 
 
 class CameraList(Resource):
-
     @jwt_required()
     def get(self):
 
@@ -37,11 +36,11 @@ class ImageList(Resource):
             image_list = list()
             for image_row in images:
                 image_list.append(image_row.json)
-                return {
-                    "message": "Successful Request",
-                    "camera_id": camera_id,
-                    "image_list": image_list
-                }, 200
+            return {
+                "message": "Successful Request",
+                "camera_id": camera_id,
+                "image_list": image_list
+            }, 200
         else:
             return {'message': 'Images not found'}, 404
 

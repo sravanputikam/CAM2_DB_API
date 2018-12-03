@@ -3,7 +3,6 @@ from db import db
 
 class ImageModel(db.Model):
 
-
     __tablename__ = "Image"
 
     image_id = db.Column(db.String(50))
@@ -19,20 +18,20 @@ class ImageModel(db.Model):
     camera_id = db.Column(db.String(50),db.ForeignKey('camera.id'))
     camera = db.relationship("CameraModel")
 
-    def __init__(self):
-        pass
-
     @classmethod
     def find_by_camera_id(cls, camera_id):
         return cls.query.filter_by(camera_id=camera_id).all
 
     @classmethod
-    def find_by_dataset(cls, camera_id):
-        return cls.query.filter_by(camera_id=camera_id).all
+    def find_by_dataset(cls, dataset):
+        return cls.query.filter_by(data_set=dataset).all
 
     @classmethod
     def get_dataset_list(cls):
         return cls.query(cls.data_set).distinct()
+
+    def __init__(self):
+        pass
 
     def json(self):
         pass
